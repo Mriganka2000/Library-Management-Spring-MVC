@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Library Management</title>
+</head>
+
+<style>
+    th, td {
+        padding: 5px;
+    }
+</style>
+
+<body>
+
+    <div align="center">
+        <h1>Welcome to! Library Management System</h1>
+        <hr>
+        <h2><u>Available Books</u></h2>
+        <form method="GET" action="search">
+            <input type="text" name="keyword" /> &nbsp;
+            <input type="submit" value="Search" />
+        </form>
+        <br/>
+        <table border="1">
+            <thead align="center">
+                <tr>
+                    <th>#Book Id</th>
+                    <th>Book Name</th>
+                    <th>Book Publisher</th>
+                    <th>Book Pages</th>
+                    <th>Written By</th>
+                    <th>Book Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody align="center">
+                <tr th:each="book : ${ books }">
+                    <td th:text="${ book.id }">#Book Id</td>
+                    <td th:text="${ book.name }">Book Name</td>
+                    <td th:text="${ book.publisherName }">Book Publisher</td>
+                    <td th:text="${ book.pages }">Book Pages</td>
+                    <td th:text="${ book.authorName }">Written By</td>
+                    <td th:text="${ book.price }">Book Price</td>
+                    <td>
+                        <a th:href="@{'/edit/' + ${ book.id }}">Edit</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a th:href="@{'/delete/' + ${ book.id }}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><i>Click <a href="new">here</a> to add a new book</i></p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Result</title>
+</head>
+
+<style>
+    th, td {
+        padding: 5px;
+    }
+</style>
+
+<body>
+
+    <div align="center">
+        <h2><u>Search Results</u></h2>
+        <table border="1">
+            <thead align="center">
+            <tr>
+                <th>#Book Id</th>
+                <th>Book Name</th>
+                <th>Book Publisher</th>
+                <th>Book Pages</th>
+                <th>Written By</th>
+                <th>Book Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody align="center">
+            <tr th:each="book : ${ bookBeans }">
+                <td th:text="${ book.id }">#Book Id</td>
+                <td th:text="${ book.name }">Book Name</td>
+                <td th:text="${ book.publisherName }">Book Publisher</td>
+                <td th:text="${ book.pages }">Book Pages</td>
+                <td th:text="${ book.authorName }">Written By</td>
+                <td th:text="${ book.price }">Book Price</td>
+                <td>
+                    <a th:href="@{'/edit/' + ${ book.id }}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete/' + ${ book.id }}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
